@@ -10,8 +10,11 @@ WORKDIR /sd-scripts
 
 # Install Kohya's full requirements EXCEPT torch/xformers (keep the image's torch),
 # plus imagesize which sd-scripts imports. Done at build time = reproducible.
-RUN grep -viE 'torch|xformers' requirements.txt | grep -vE '^\.$|^-e' > /tmp/req.txt \
+# Strip ONLY the torch/torchvision/torchaudio/xformers package lines (keep the
+# image's torch) — must NOT strip lines that merely contain 'torch' as a
+# substring like diffusers[torch] or pytorch-lightning or open-clip-torch.
+RUN grep -vE '^(torch|xformers)' requirements.txt | grep -vE '^\.$|^-e' > /tmp/req.txt \
  && pip install --no-cache-dir -r /tmp/req.txt imagesize
 
-# Quick import sanity check so a broken build fails here, not on a GPU pod.
-RUN python -c "import imagesize, accelerate, transformers, diffusers, safetensors; import library.train_util" || true
+# Import sanity check — fail the BUILD if anything is missing (no `|| true`).
+RUN python -c "import imagesize, accelerate, transformers, diffusers, safetensors; import library.train_util"
