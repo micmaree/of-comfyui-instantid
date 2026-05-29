@@ -1,9 +1,9 @@
-name: build
+name: flux
 on:
   push:
     paths:
-      - 'Dockerfile'
-      - '.github/workflows/build.yml'
+      - 'flux.Dockerfile'
+      - '.github/workflows/flux.yml'
   workflow_dispatch:
 
 jobs:
@@ -32,5 +32,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
+          file: flux.Dockerfile
           push: true
-          tags: ghcr.io/micmaree/of-comfyui-instantid:latest
+          tags: ghcr.io/micmaree/of-flux:latest
