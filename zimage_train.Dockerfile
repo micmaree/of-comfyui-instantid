@@ -18,7 +18,7 @@ RUN pip install --no-cache-dir     torch==2.6.0 torchvision==0.21.0 torchaudio==
 # bleeding-edge transformers 5.x / hub 1.10.1 / diffusers-from-git conflicts
 # that killed builds 1-5).
 RUN pip install --no-cache-dir "numpy<2"
-RUN pip install --no-cache-dir     "diffusers>=0.36,<0.40"     "transformers>=4.46,<5"     "huggingface_hub>=0.25,<1.0"     "accelerate>=0.34"     "safetensors>=0.4"     "peft>=0.18"     "bitsandbytes>=0.43"     "torchao>=0.6,<0.9"     prodigyopt hf_transfer sentencepiece tensorboard     pyyaml oyaml omegaconf toml python-dotenv python-slugify     pillow opencv-python-headless einops kornia     lycoris-lora "open_clip_torch>=2.20,<3" "timm<2" "k-diffusion>=0.1"     flatten-json controlnet-aux
+RUN pip install --no-cache-dir     "diffusers>=0.36,<0.40"     "transformers>=4.50,<4.55"     "huggingface_hub>=0.25,<1.0"     "accelerate>=0.34"     "safetensors>=0.4"     "peft>=0.18"     "bitsandbytes>=0.43"     "torchao>=0.6,<0.9"     prodigyopt hf_transfer sentencepiece tensorboard     pyyaml oyaml omegaconf toml python-dotenv python-slugify     pillow opencv-python-headless einops kornia     lycoris-lora "open_clip_torch>=2.20,<3" "timm<2" "k-diffusion>=0.1"     flatten-json controlnet-aux
 
 RUN git clone --depth 1 https://github.com/ostris/ai-toolkit.git /ai-toolkit
 
