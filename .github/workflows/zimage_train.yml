@@ -32,4 +32,6 @@ jobs:
           context: .
           file: zimage_train.Dockerfile
           push: true
-          tags: ghcr.io/micmaree/of-train-zimage:latest
+          tags: |
+            ghcr.io/micmaree/of-train-zimage-v2:latest
+            ghcr.io/micmaree/of-train-zimage-v2:${{ github.sha }}
